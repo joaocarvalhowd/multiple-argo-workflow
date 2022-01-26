@@ -3,3 +3,29 @@ namespace: argo-prod
 resources:
   - ../../base
   - prod-namespace
+
+patchesJson6902:
+- target:
+    group: rbac.authorization.k8s.io
+    version: v1
+    kind: ClusterRole
+    name: argocd-application-controller
+  path: ArgoCDApplicationControllerCRPatch.yaml
+- target:
+    group: rbac.authorization.k8s.io
+    version: v1
+    kind: ClusterRole
+    name: argocd-server
+  path: ArgoCDServerCRPatch.yaml
+- target:
+    group: rbac.authorization.k8s.io
+    version: v1
+    kind: ClusterRoleBinding
+    name: argocd-application-controller
+  path: ArgoCDApplicationControllerCRBPatch.yaml
+- target:
+    group: rbac.authorization.k8s.io
+    version: v1
+    kind: ClusterRoleBinding
+    name: argocd-server
+  path: ArgoCDServerCRBPatch.yaml

@@ -1,0 +1,6 @@
+- op: replace
+  path: /metadata/name
+  value: argocd-server-prod
+- op: replace
+  path: /roleRef/name
+  value: argocd-server-prod
