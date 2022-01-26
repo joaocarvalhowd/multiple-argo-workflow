@@ -1,0 +1,5 @@
+namespace: argo-prod
+
+resources:
+  - ../../base
+  - prod-namespace
