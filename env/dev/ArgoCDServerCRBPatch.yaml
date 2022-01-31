@@ -7,3 +7,6 @@
 - op: replace
   path: /subjects/0/name
   value: argocd-dev-server
+- op: replace
+  path: /subjects/0/namespace
+  value: argo-dev
