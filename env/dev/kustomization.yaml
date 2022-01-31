@@ -4,28 +4,74 @@ resources:
   - ../../base
   - dev-namespace
 
-# patchesJson6902:
-# - target:
-#     group: rbac.authorization.k8s.io
-#     version: v1
-#     kind: ClusterRole
-#     name: argocd-application-controller
-#   path: ArgoCDApplicationControllerCRPatch.yaml
-# - target:
-#     group: rbac.authorization.k8s.io
-#     version: v1
-#     kind: ClusterRole
-#     name: argocd-server
-#   path: ArgoCDServerCRPatch.yaml
-# - target:
-#     group: rbac.authorization.k8s.io
-#     version: v1
-#     kind: ClusterRoleBinding
-#     name: argocd-application-controller
-#   path: ArgoCDApplicationControllerCRBPatch.yaml
-# - target:
-#     group: rbac.authorization.k8s.io
-#     version: v1
-#     kind: ClusterRoleBinding
-#     name: argocd-server
-#   path: ArgoCDServerCRBPatch.yaml
+patchesJson6902:
+- target:
+    version: v1
+    kind: ServiceAccount
+    name: argocd-application-controller
+  path: ArgoCDSAPatch.yaml
+- target:
+    version: v1
+    kind: ServiceAccount
+    name: argocd-server
+  path: ArgoCDServerSAPatch.yaml
+- target:
+    group: rbac.authorization.k8s.io
+    version: v1
+    kind: Role
+    name: argocd-application-controller
+  path: ArgoCDRolePatch.yaml
+- target:
+    group: rbac.authorization.k8s.io
+    version: v1
+    kind: Role
+    name: argocd-server
+  path: ArgoCDServerRolePatch.yaml
+- target:
+    group: rbac.authorization.k8s.io
+    version: v1
+    kind: ClusterRole
+    name: argocd-application-controller
+  path: ArgoCDApplicationControllerCRPatch.yaml
+- target:
+    group: rbac.authorization.k8s.io
+    version: v1
+    kind: ClusterRole
+    name: argocd-server
+  path: ArgoCDServerCRPatch.yaml
+- target:
+    group: rbac.authorization.k8s.io
+    version: v1
+    kind: ClusterRoleBinding
+    name: argocd-application-controller
+  path: ArgoCDApplicationControllerCRBPatch.yaml
+- target:
+    group: rbac.authorization.k8s.io
+    version: v1
+    kind: RoleBinding
+    name: argocd-application-controller
+  path: ArgoCDApplicationControllerRBPatch.yaml
+- target:
+    group: rbac.authorization.k8s.io
+    version: v1
+    kind: ClusterRoleBinding
+    name: argocd-server
+  path: ArgoCDServerCRBPatch.yaml
+- target:
+    group: rbac.authorization.k8s.io
+    version: v1
+    kind: RoleBinding
+    name: argocd-server
+  path: ArgoCDServerRBPatch.yaml
+- target:
+    group: apps
+    version: v1
+    kind: Deployment
+    name: argocd-server
+  path: ArgoCDServerDeploymentPatch.yaml
+- target:
+    group: apps
+    version: v1
+    kind: StatefulSet
+    name: argocd-application-controller
+  path: ArgoCDApplicationStatefulSetPatch.yaml
